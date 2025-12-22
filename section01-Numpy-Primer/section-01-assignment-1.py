@@ -96,5 +96,12 @@ def _(array):
     return
 
 
+@app.cell
+def _(array):
+    help_np_array = help(type(array))
+    _ = help_np_array
+    return
+
+
 if __name__ == "__main__":
     app.run()

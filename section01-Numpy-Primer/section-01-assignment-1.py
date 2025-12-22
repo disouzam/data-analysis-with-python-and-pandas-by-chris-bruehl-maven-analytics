@@ -97,9 +97,13 @@ def _(array):
 
 
 @app.cell
-def _(array):
-    help_np_array = help(type(array))
-    _ = help_np_array
+def _(array, mo):
+    with mo.capture_stdout() as captured_output:
+        _ = help(type(array))
+
+    captured_value = captured_output.getvalue()
+
+    print(captured_value)
     return
 
 

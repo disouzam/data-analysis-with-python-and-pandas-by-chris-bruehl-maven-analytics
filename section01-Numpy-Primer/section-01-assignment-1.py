@@ -146,5 +146,37 @@ def _(remaining_block_3):
     return
 
 
+@app.cell(hide_code=True)
+def _(mo):
+    mo.md(r"""
+    # Reshaping arrays
+    """)
+    return
+
+
+@app.cell
+def _(array):
+    reshaped_1 = array.reshape(1, 10)
+    print(reshaped_1)
+    print(reshaped_1.shape)
+    return
+
+
+@app.cell
+def _(array):
+    reshaped_2 = array.reshape(10, 1)
+    print(reshaped_2)
+    print(reshaped_2.shape)
+    return
+
+
+@app.cell
+def _(array):
+    reshaped_3 = array.reshape(5, 2)
+    print(reshaped_3)
+    print(reshaped_3.shape)
+    return
+
+
 if __name__ == "__main__":
     app.run()

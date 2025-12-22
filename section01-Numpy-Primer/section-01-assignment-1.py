@@ -102,8 +102,47 @@ def _(array, mo):
         _ = help(type(array))
 
     captured_value = captured_output.getvalue()
+    return (captured_value,)
 
-    print(captured_value)
+
+@app.cell
+def _(captured_value):
+    # First set of details of array help information
+    first_block_pos = captured_value.find(" |  Parameters\n |  ----------")
+    first_block = captured_value[:first_block_pos]
+    remaining_block = captured_value[first_block_pos + 1 :]
+    print(first_block)
+    return (remaining_block,)
+
+
+@app.cell
+def _(remaining_block):
+    # Parameters for the new method of Array class of numpy
+    second_block_pos = remaining_block.find(" |  Attributes\n |  ----------")
+    second_block = remaining_block[:second_block_pos]
+    remaining_block_2 = remaining_block[second_block_pos + 1 :]
+    print(second_block)
+    return (remaining_block_2,)
+
+
+@app.cell
+def _(remaining_block_2):
+    # Atributes for the new method of Array class of numpy
+    third_block_pos = remaining_block_2.find("|  See Also\n |  --------")
+    third_block = remaining_block_2[:third_block_pos]
+    remaining_block_3 = remaining_block_2[third_block_pos + 1 :]
+    print(third_block)
+    return (remaining_block_3,)
+
+
+@app.cell
+def _(remaining_block_3):
+    # "See also" section for the new method of Array class of numpy
+    fourth_block_pos = remaining_block_3.find(" |  Notes\n |  -----")
+    fourth_block = remaining_block_3[:fourth_block_pos]
+    remaining_block_4 = remaining_block_3[fourth_block_pos + 1 :]
+    _ = remaining_block_4
+    print(fourth_block)
     return
 
 

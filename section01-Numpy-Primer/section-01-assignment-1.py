@@ -92,7 +92,7 @@ def _(array):
 
 @app.cell
 def _(array):
-    print(f"Data type of each element: {type(array[0])}")
+    print(f"Data type of each element: {array.dtype}")
     return
 
 

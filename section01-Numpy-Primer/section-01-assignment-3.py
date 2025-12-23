@@ -55,15 +55,17 @@ def _(random_array):
 @app.cell
 def _(random_array):
     # Grab the entire first column
-    first_column = random_array[:, :1]
+    first_column = random_array[:, 0]
     print(first_column)
+    print(first_column.shape)
+    print(type(first_column))
     return
 
 
 @app.cell
 def _(random_array):
     # Finally, grab the second element of the third row.
-    second_element_third_row = random_array[1, 2]
+    second_element_third_row = random_array[2, 1]
     print(second_element_third_row)
     return
 

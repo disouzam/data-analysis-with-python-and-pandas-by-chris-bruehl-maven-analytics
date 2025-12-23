@@ -58,6 +58,22 @@ def _(array_2):
 @app.cell(hide_code=True)
 def _(mo):
     mo.md(r"""
+    # Using linspace
+    """)
+    return
+
+
+@app.cell
+def _(np):
+    array_lp = np.linspace(10, 100, 10).reshape((5, 2))
+    print(array_lp)
+    print(array_lp.dtype)
+    return
+
+
+@app.cell(hide_code=True)
+def _(mo):
+    mo.md(r"""
     # Setting dtype on array creation
     """)
     return

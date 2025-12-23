@@ -1,12 +1,13 @@
 {
     "files.exclude": {
-        ".mypy_cache": true,
-        ".ruff_cache": true,
-        ".venv": true,
+        "**/__pycache__": true,
         "**/.DS_Store": true,
         "**/.git": true,
         "**/.hg": true,
+        "**/.mypy_cache": true,
+        "**/.ruff_cache": true,
         "**/.svn": true,
+        "**/.venv": true,
         "**/Thumbs.db": true
     },
     "editor.formatOnSave": true,

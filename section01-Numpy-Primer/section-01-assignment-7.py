@@ -49,9 +49,132 @@ def _(mo):
     retail_df = pd.read_csv(csv_file_path, skiprows=range(1, 11000), nrows=1000)
 
     family_array = np.array(retail_df["family"])
-    _ = family_array
     sales_array = np.array(retail_df["sales"])
-    _ = sales_array
+    return family_array, np, sales_array
+
+
+@app.cell
+def _(family_array, sales_array):
+    print(f"Shape of family_array: {family_array.shape}")
+    print(f"Shape of sales_array: {sales_array.shape}")
+    return
+
+
+@app.cell
+def _(family_array, sales_array):
+    print(f"First 5 items in family_array: {family_array[:5]}...")
+    print(f"First 5 items in sales_array: {sales_array[:5]}...")
+    return
+
+
+@app.cell(hide_code=True)
+def _(mo):
+    mo.md(r"""
+    # Filtering sales array
+    """)
+    return
+
+
+@app.cell
+def _(family_array, np, sales_array):
+    indexes = np.linspace(0, family_array.size - 1, family_array.size)
+    print(f"- First/ last 5 items in indexes: {indexes[:5]}...{indexes[-5:]}")
+
+    produce_product_family_mask = family_array == "PRODUCE"
+    filtered_family_array = family_array[produce_product_family_mask]
+
+    print(f"- Number of items in filtered_family_array: {filtered_family_array.size}")
+    print(
+        f"- First/ last 5 items in filtered_family_array: {filtered_family_array[:5]}...{filtered_family_array[-5:]}"
+    )
+
+    filtered_indexes = indexes[produce_product_family_mask]
+
+    print(
+        f"- First/ last 5 items in filtered indexes: {filtered_indexes[:5]}...{filtered_indexes[-5:]}"
+    )
+
+    filtered_sales = sales_array[produce_product_family_mask]
+    print(
+        f"- First/ last 5 items in filtered sales array: {filtered_sales[:5]}...{filtered_sales[-5:]}"
+    )
+    return (filtered_sales,)
+
+
+@app.cell(hide_code=True)
+def _(mo):
+    mo.md(r"""
+    # Random sampling
+    """)
+    return
+
+
+@app.cell
+def _(filtered_sales, np):
+    rng = np.random.default_rng(2022)
+    random_array = rng.random(30)
+    print(
+        f"- First/ last 5 items in random generated array: {random_array[:5]}...{random_array[-5:]}"
+    )
+
+    random_mask = random_array < 0.5
+    print(
+        f"- First/ last 5 items in random mask: {random_mask[:5]}...{random_mask[-5:]}"
+    )
+
+    random_sales = filtered_sales[random_mask]
+    print()
+    print(f"- Size of random sales: {random_sales.size}")
+    print(
+        f"- First/ last 5 items in random sales: {random_sales[:5]}...{random_sales[-5:]}"
+    )
+    return (random_sales,)
+
+
+@app.cell(hide_code=True)
+def _(mo):
+    mo.md(r"""
+    # Mean and median sales
+    """)
+    return
+
+
+@app.cell
+def _(np, random_sales):
+    mean_sales = random_sales.mean()
+    median_sales = np.median(random_sales)
+
+    print(f"- Median sales: {median_sales.round(2)}")
+    print(f"- Mean sales: {mean_sales.round(2)}")
+    return mean_sales, median_sales
+
+
+@app.cell
+def _(mean_sales, median_sales, random_sales):
+    above_mean_mask = random_sales > mean_sales
+    below_median_mask = random_sales < median_sales
+    above_median_mask = (random_sales >= median_sales) & (random_sales <= mean_sales)
+    return above_mean_mask, above_median_mask, below_median_mask
+
+
+@app.cell
+def _(above_mean_mask, above_median_mask, below_median_mask, np, random_sales):
+    result_array = np.array(["EMPTY"] * random_sales.size, dtype="<U12")
+
+    print(result_array.dtype)
+
+    result_array[above_mean_mask] = "above_both"
+    result_array[below_median_mask] = "below_both"
+    result_array[above_median_mask] = "above_median"
+
+    check_result_mask = result_array == "EMPTY"
+    check_result_array = result_array[check_result_mask]
+    print(check_result_array.size)
+    assert check_result_array.size == 0, (
+        "EMPTY is default value that should be replaced"
+    )
+
+    print(result_array)
     return
 
 

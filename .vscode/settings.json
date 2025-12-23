@@ -11,13 +11,13 @@
     },
     "editor.formatOnSave": true,
     "[python]": {
-        "diffEditor.ignoreTrimWhitespace": false,
-        "editor.defaultColorDecorators": "never",
+        "diffEditor.ignoreTrimWhitespace": true,
+        "editor.defaultColorDecorators": "always",
         "gitlens.codeLens.symbolScopes": [
             "!Module"
         ],
         "editor.formatOnType": true,
-        "editor.wordBasedSuggestions": "off",
+        "editor.wordBasedSuggestions": "allDocuments",
         "editor.defaultFormatter": "charliermarsh.ruff"
     }
 }

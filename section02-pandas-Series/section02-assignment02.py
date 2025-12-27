@@ -112,6 +112,14 @@ def _(oil_series_2):
 
 @app.cell
 def _(oil_series_2):
+    early_january_oil_prices = oil_series_2.loc["2017-01-01":"2017-01-07"]
+    print(early_january_oil_prices.size)
+    print(early_january_oil_prices)
+    return
+
+
+@app.cell
+def _(oil_series_2):
     oil_series_3 = oil_series_2.reset_index(drop=True)
     print(oil_series_3)
     return

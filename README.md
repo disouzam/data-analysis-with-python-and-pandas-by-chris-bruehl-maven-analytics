@@ -51,4 +51,8 @@ This section syllabus involved:
 10. Text series operations
 11. Numerical series aggregation
 12. Categorical series aggregation
-13.
+13. Missing data representation in Pandas
+14. Identifying missing data
+15. Fixing missing data
+16. Applying custom functions to series
+17. pandas where() vs NumPy where()

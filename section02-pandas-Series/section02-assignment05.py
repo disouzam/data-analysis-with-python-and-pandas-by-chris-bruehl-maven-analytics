@@ -77,7 +77,7 @@ def _(dates_for_index, oil_series, pd):
     jan_and_feb_entries = (months == 1) | (months == 2)
     jan_and_feb_entries.name = "January / February boolean filter"
     jan_and_feb_entries.index = dates_for_index
-
+    print(months)
     print(march_entries)
     print(jan_and_feb_entries)
     return jan_and_feb_entries, march_entries

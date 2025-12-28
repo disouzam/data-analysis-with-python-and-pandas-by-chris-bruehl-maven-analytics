@@ -121,5 +121,42 @@ def _(oil_series):
     return
 
 
+@app.cell(hide_code=True)
+def _(mo):
+    mo.md(r"""
+    # Proposed solution and expliciting potential issues with it
+    """)
+    return
+
+
+@app.cell
+def _(oil_series):
+    oil_series[oil_series.index.str[6:7].isin(["1", "2"])].count()
+    return
+
+
+@app.cell
+def _(dates_for_index, oil_series, pd):
+    stripped_month_series = pd.Series(oil_series.index.str[6:7])
+    stripped_month_series.index = dates_for_index
+    stripped_month_series = stripped_month_series.astype("int")
+    print(stripped_month_series)
+    return (stripped_month_series,)
+
+
+@app.cell
+def _(stripped_month_series):
+    values_as_one = stripped_month_series.loc[stripped_month_series == 1]
+    print(dict(values_as_one))
+    return
+
+
+@app.cell
+def _(stripped_month_series):
+    values_as_two = stripped_month_series.loc[stripped_month_series == 2]
+    print(dict(values_as_two))
+    return
+
+
 if __name__ == "__main__":
     app.run()
